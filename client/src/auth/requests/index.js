@@ -9,12 +9,11 @@
     
     @author McKilla Gorilla
 */
-
-import axios from 'axios'
-axios.defaults.withCredentials = true;
-const api = axios.create({
-    baseURL: 'http://localhost:4000/auth',
-})
+// import axios from 'axios'
+// axios.defaults.withCredentials = true;
+// const api = axios.create({
+//     baseURL: baseURL,
+// })
 
 // THESE ARE ALL THE REQUESTS WE`LL BE MAKING, ALL REQUESTS HAVE A
 // REQUEST METHOD (like get) AND PATH (like /register). SOME ALSO
@@ -23,23 +22,101 @@ const api = axios.create({
 // WE NEED TO PUT THINGS INTO THE DATABASE OR IF WE HAVE SOME
 // CUSTOM FILTERS FOR QUERIES
 
-export const getLoggedIn = () => api.get(`/loggedIn/`);
-export const loginUser = (email, password) => {
-    return api.post(`/login/`, {
-        email : email,
-        password : password
-    })
+const baseURL = "http://localhost:4000/auth"
+
+export const getLoggedIn = async () => {
+    const res = await fetch(baseURL + "/loggedIn", {
+        method: "GET",
+        credentials: "include"
+    });
+    
+    if(!res.ok)
+        throw new Error("HTTP error, status: " + res.status)
+    
+    const data = await res.json();
+    
+    return {
+        status: res.status,
+        statusText: res.statusText,
+        data: data,
+        headers: res.headers
+    };
 }
-export const logoutUser = () => api.get(`/logout/`)
-export const registerUser = (firstName, lastName, email, password, passwordVerify) => {
-    return api.post(`/register/`, {
-        firstName : firstName,
-        lastName : lastName,
-        email : email,
-        password : password,
-        passwordVerify : passwordVerify
-    })
+
+export const loginUser = async (email, password) => {
+    const res = await fetch(baseURL + "/login/", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password
+        })
+    });
+
+    if(!res.ok)
+        throw new Error("Couldn't login, status: " + res.status);
+
+    const data = await res.json();
+    
+    return {
+        status: res.status,
+        statusText: res.statusText,
+        data: data,
+        headers: res.headers
+    };
 }
+
+export const logoutUser = async () => {
+    const res = await fetch(baseURL + "/logout/", {
+        method: "GET",
+        credentials: "include"
+    });
+    
+    if(!res.ok)
+        throw new Error("Could not logout user, status: " + res.status);
+    
+    const data = await res.json();
+    
+    return {
+        status: res.status,
+        statusText: res.statusText,
+        data: data,
+        headers: res.headers
+    };
+}
+
+export const registerUser = async (firstName, lastName, email, password, passwordVerify) => {
+    const res = await fetch(baseURL + "/register/", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            passwordVerify: passwordVerify
+        })
+    });
+
+    if(!res.ok)
+        throw new Error("Could not register user, status: " + res.status);
+
+    const data = await res.json();
+    
+    return {
+        status: res.status,
+        statusText: res.statusText,
+        data: data,
+        headers: res.headers
+    };
+}
+
 const apis = {
     getLoggedIn,
     registerUser,
