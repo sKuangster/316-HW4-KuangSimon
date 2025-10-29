@@ -18,7 +18,14 @@
             "playlists": [
                 "68f526c4ec1ea2ad00a6fae8"
             ]
-        }
+        },
+        {
+            "firstName": "Simon",
+            "lastName": "Kuang",
+            "email": "skuang64@gmail.com",
+            "passwordHash": "$2a$10$qY.Oacxtjl2ImkGBK9Im0Oc8Ll2vU8/eyE.v1SA7HzDhhMyAAdApK",
+            "playlists": ["6901b0089849d8ccd811fa44", "6901b0619849d8ccd811fa6d", "6901b0779849d8ccd811fa9f"]
+            }
     ],
     "playlists": [
         {
@@ -207,6 +214,388 @@
                     "artist": "The Clash",
                     "year": 1979,
                     "youTubeId": "uEK9oK02D1M"
+                }
+            ]
+        },
+        {
+            "_id":"6901b0089849d8ccd811fa44",
+            "ownerEmail": "skuang64@gmail.com",
+            "name": "Old Songs I Like",
+            "songs": 
+            [
+                {
+                    "title": "Bohemian Rhapsody",
+                    "artist": "Queen",
+                    "year": 1975,
+                    "youTubeId": "fJ9rUzIMcZQ"
+                },
+                {
+                    "title": "Hotel California",
+                    "artist": "Eagles",
+                    "year": 1977,
+                    "youTubeId": "09839DpTctU"
+                },
+                {
+                    "title": "Stairway to Heaven",
+                    "artist": "Led Zeppelin",
+                    "year": 1971,
+                    "youTubeId": "QkF3oxziUI4"
+                },
+                {
+                    "title": "Imagine",
+                    "artist": "John Lennon",
+                    "year": 1971,
+                    "youTubeId": "YkgkThdzX-8"
+                },
+                {
+                    "title": "Sweet Child O' Mine",
+                    "artist": "Guns N' Roses",
+                    "year": 1987,
+                    "youTubeId": "1w7OgIMMRc4"
+                },
+                {
+                    "title": "Smells Like Teen Spirit",
+                    "artist": "Nirvana",
+                    "year": 1991,
+                    "youTubeId": "hTWKbfoikeg"
+                },
+                {
+                    "title": "Hey Jude",
+                    "artist": "The Beatles",
+                    "year": 1968,
+                    "youTubeId": "A_MjCqQoLLA"
+                },
+                {
+                    "title": "What's Going On",
+                    "artist": "Marvin Gaye",
+                    "year": 1971,
+                    "youTubeId": "o5TmORitlKku"
+                },
+                {
+                    "title": "Dancing Queen",
+                    "artist": "ABBA",
+                    "year": 1976,
+                    "youTubeId": "xFrGuyw1V8s"
+                },
+                {
+                    "title": "September",
+                    "artist": "Earth, Wind & Fire",
+                    "year": 1978,
+                    "youTubeId": "Gs069dndIYk"
+                },
+                {
+                    "title": "Superstition",
+                    "artist": "Stevie Wonder",
+                    "year": 1972,
+                    "youTubeId": "0CFuCYNx-1g"
+                },
+                {
+                    "title": "Dream On",
+                    "artist": "Aerosmith",
+                    "year": 1973,
+                    "youTubeId": "89dGC8de0CA"
+                },
+                {
+                    "title": "Take On Me",
+                    "artist": "a-ha",
+                    "year": 1985,
+                    "youTubeId": "djV11Xbc914"
+                },
+                {
+                    "title": "Livin' on a Prayer",
+                    "artist": "Bon Jovi",
+                    "year": 1986,
+                    "youTubeId": "lDK9QqIzhwk"
+                },
+                {
+                    "title": "Under Pressure",
+                    "artist": "Queen & David Bowie",
+                    "year": 1981,
+                    "youTubeId": "a01QQZyl-_I"
+                },
+                {
+                    "title": "Don't Stop Believin'",
+                    "artist": "Journey",
+                    "year": 1981,
+                    "youTubeId": "1k8craCGpgs"
+                },
+                {
+                    "title": "Purple Rain",
+                    "artist": "Prince",
+                    "year": 1984,
+                    "youTubeId": "TvnYmWpD_T8"
+                },
+                {
+                    "title": "Africa",
+                    "artist": "Toto",
+                    "year": 1982,
+                    "youTubeId": "FTQbiNvZqaY"
+                },
+                {
+                    "title": "With or Without You",
+                    "artist": "U2",
+                    "year": 1987,
+                    "youTubeId": "XmSdTa9kaiQ"
+                },
+                {
+                    "title": "Free Bird",
+                    "artist": "Lynyrd Skynyrd",
+                    "year": 1973,
+                    "youTubeId": "D0W1v0kOELA"
+                }
+            ]
+        },
+        {
+            "_id":"6901b0619849d8ccd811fa6d",
+            "ownerEmail": "skuang64@gmail.com",
+            "name": "My Favorite Songs",
+            "songs": [
+                {
+                    "title": "Wonderwall",
+                    "artist": "Oasis",
+                    "year": 1995,
+                    "youTubeId": "bx1Bh8ZvH84"
+                },
+                {
+                    "title": "Creep",
+                    "artist": "Radiohead",
+                    "year": 1992,
+                    "youTubeId": "XFkzRNyygfk"
+                },
+                {
+                    "title": "Losing My Religion",
+                    "artist": "R.E.M.",
+                    "year": 1991,
+                    "youTubeId": "xwtdhWltSIg"
+                },
+                {
+                    "title": "Bitter Sweet Symphony",
+                    "artist": "The Verve",
+                    "year": 1997,
+                    "youTubeId": "1lyu1KKwC74"
+                },
+                {
+                    "title": "Zombie",
+                    "artist": "The Cranberries",
+                    "year": 1994,
+                    "youTubeId": "6Ejga4kJUts"
+                },
+                {
+                    "title": "Mr. Brightside",
+                    "artist": "The Killers",
+                    "year": 2003,
+                    "youTubeId": "gGdGFtwCNBE"
+                },
+                {
+                    "title": "Seven Nation Army",
+                    "artist": "The White Stripes",
+                    "year": 2003,
+                    "youTubeId": "0J2QdDbelmY"
+                },
+                {
+                    "title": "Clint Eastwood",
+                    "artist": "Gorillaz",
+                    "year": 2001,
+                    "youTubeId": "1V_xRb0x9aw"
+                },
+                {
+                    "title": "Take Me Out",
+                    "artist": "Franz Ferdinand",
+                    "year": 2004,
+                    "youTubeId": "Ijk4j-r7qPA"
+                },
+                {
+                    "title": "Pumped Up Kicks",
+                    "artist": "Foster the People",
+                    "year": 2010,
+                    "youTubeId": "SDTZ7iX4vTQ"
+                },
+                {
+                    "title": "Somebody That I Used to Know",
+                    "artist": "Gotye",
+                    "year": 2011,
+                    "youTubeId": "8UVNT4wvIGY"
+                },
+                {
+                    "title": "Radioactive",
+                    "artist": "Imagine Dragons",
+                    "year": 2012,
+                    "youTubeId": "ktvTqknDobU"
+                },
+                {
+                    "title": "Counting Stars",
+                    "artist": "OneRepublic",
+                    "year": 2013,
+                    "youTubeId": "hT_nvWreIhg"
+                },
+                {
+                    "title": "Riptide",
+                    "artist": "Vance Joy",
+                    "year": 2013,
+                    "youTubeId": "uJ_1HMAGb4k"
+                },
+                {
+                    "title": "Ho Hey",
+                    "artist": "The Lumineers",
+                    "year": 2012,
+                    "youTubeId": "zvCBSSwgtg4"
+                },
+                {
+                    "title": "Little Talks",
+                    "artist": "Of Monsters and Men",
+                    "year": 2011,
+                    "youTubeId": "ghb6eDopW8I"
+                },
+                {
+                    "title": "Home",
+                    "artist": "Edward Sharpe & The Magnetic Zeros",
+                    "year": 2010,
+                    "youTubeId": "DHEOF_rcND8"
+                },
+                {
+                    "title": "Electric Feel",
+                    "artist": "MGMT",
+                    "year": 2007,
+                    "youTubeId": "MmZexg8sxyk"
+                },
+                {
+                    "title": "Float On",
+                    "artist": "Modest Mouse",
+                    "year": 2004,
+                    "youTubeId": "CTAud5O7Qqk"
+                },
+                {
+                    "title": "Dog Days Are Over",
+                    "artist": "Florence + The Machine",
+                    "year": 2008,
+                    "youTubeId": "iWOyfLBYtuU"
+                }
+            ]
+        },
+        {
+            "_id": "6901b0779849d8ccd811fa9f",
+            "ownerEmail": "skuang64@gmail.com",
+            "name": "Interesting and Unusual Songs",
+            "songs": [
+                {
+                    "title": "Paranoid Android",
+                    "artist": "Radiohead",
+                    "year": 1997,
+                    "youTubeId": "fHiGbolFFGw"
+                },
+                {
+                    "title": "Windowlicker",
+                    "artist": "Aphex Twin",
+                    "year": 1999,
+                    "youTubeId": "UBS4Gi1y_nc"
+                },
+                {
+                    "title": "Teardrop",
+                    "artist": "Massive Attack",
+                    "year": 1998,
+                    "youTubeId": "u7K72X4eo_s"
+                },
+                {
+                    "title": "Svefn-g-englar",
+                    "artist": "Sigur Rós",
+                    "year": 1999,
+                    "youTubeId": "rtemrZ7-pj0"
+                },
+                {
+                    "title": "Limit to Your Love",
+                    "artist": "James Blake",
+                    "year": 2010,
+                    "youTubeId": "oOT2-OTebx0"
+                },
+                {
+                    "title": "Breathe",
+                    "artist": "The Prodigy",
+                    "year": 1996,
+                    "youTubeId": "6_PAHbqq-o4"
+                },
+                {
+                    "title": "Around the World",
+                    "artist": "Daft Punk",
+                    "year": 1997,
+                    "youTubeId": "yca6UsllwYs"
+                },
+                {
+                    "title": "Yoshimi Battles the Pink Robots Pt. 1",
+                    "artist": "The Flaming Lips",
+                    "year": 2002,
+                    "youTubeId": "AzlMeTxVdH8"
+                },
+                {
+                    "title": "No Surprises",
+                    "artist": "Radiohead",
+                    "year": 1997,
+                    "youTubeId": "u5CVsCnxyXg"
+                },
+                {
+                    "title": "Lazarus",
+                    "artist": "David Bowie",
+                    "year": 2015,
+                    "youTubeId": "y-JqH1M4Ya8"
+                },
+                {
+                    "title": "Crystallised",
+                    "artist": "The xx",
+                    "year": 2009,
+                    "youTubeId": "Pib8eYDSFEI"
+                },
+                {
+                    "title": "Get Got",
+                    "artist": "Death Grips",
+                    "year": 2012,
+                    "youTubeId": "HIrKSqb4H4A"
+                },
+                {
+                    "title": "Midnight City",
+                    "artist": "M83",
+                    "year": 2011,
+                    "youTubeId": "dX3k_QDnzHE"
+                },
+                {
+                    "title": "Genesis",
+                    "artist": "Grimes",
+                    "year": 2012,
+                    "youTubeId": "1FH-q0I1fJY"
+                },
+                {
+                    "title": "Only Shallow",
+                    "artist": "My Bloody Valentine",
+                    "year": 1991,
+                    "youTubeId": "FyYMzEplnfU"
+                },
+                {
+                    "title": "Fake Plastic Trees",
+                    "artist": "Radiohead",
+                    "year": 1995,
+                    "youTubeId": "n5h0qHwNrHk"
+                },
+                {
+                    "title": "Untitled #1 (Vaka)",
+                    "artist": "Sigur Rós",
+                    "year": 2002,
+                    "youTubeId": "hqJ8hFgYwVg"
+                },
+                {
+                    "title": "On Melancholy Hill",
+                    "artist": "Gorillaz",
+                    "year": 2010,
+                    "youTubeId": "04mfKJWDSzI"
+                },
+                {
+                    "title": "Let Down",
+                    "artist": "Radiohead",
+                    "year": 1997,
+                    "youTubeId": "aUea0h4DZTs"
+                },
+                {
+                    "title": "How to Disappear Completely",
+                    "artist": "Radiohead",
+                    "year": 2000,
+                    "youTubeId": "nZq_jeYsbTs"
                 }
             ]
         }
