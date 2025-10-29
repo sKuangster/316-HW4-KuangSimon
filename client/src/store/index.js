@@ -16,7 +16,7 @@ import AuthContext from '../auth'
 */
 
 // THIS IS THE CONTEXT WE'LL USE TO SHARE OUR STORE
-export const GlobalStoreContext = createContext({});
+const GlobalStoreContext = createContext({});
 console.log("create GlobalStoreContext");
 
 // THESE ARE ALL THE TYPES OF UPDATES TO OUR GLOBAL
@@ -562,4 +562,4 @@ function GlobalStoreContextProvider(props) {
 }
 
 export default GlobalStoreContext;
-export { GlobalStoreContextProvider };
+export { GlobalStoreContext, GlobalStoreContextProvider };
