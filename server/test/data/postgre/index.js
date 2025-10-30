@@ -90,7 +90,7 @@ async function fillTables(data) {
                 passwordHash: user.passwordHash
             });
         }
-        console.log("✓ Users filled");
+        console.log("Users filled");
 
         console.log(`\nInserting ${data.playlists.length} playlists...`);
         for (let i = 0; i < data.playlists.length; i++) {
@@ -103,7 +103,7 @@ async function fillTables(data) {
                 songs: playlist.songs
             });
         }
-        console.log("✓ Playlists filled");
+        console.log("Playlists filled");
     } catch (err) {
         console.log("Error filling tables:");
         console.log(err);

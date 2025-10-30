@@ -24,11 +24,18 @@ app.use('/auth', authRouter)
 const storeRouter = require('./routes/store-router')
 app.use('/store', storeRouter)
 
-// INITIALIZE OUR DATABASE OBJECT
-const db = require('./db')
-db.on('error', console.error.bind(console, 'Database connection error:'))
+// INITIALIZE DATABASE CONNECTION
+const { getDatabaseManager } = require('./db')
+const dbManager = getDatabaseManager()
 
-// PUT THE SERVER IN LISTENING MODE
-app.listen(PORT, () => console.log(`Playlister Server running on port ${PORT}`))
-
-
+// Connect to database and start server
+dbManager.connect()
+    .then(() => {
+        console.log('Database connected successfully!')
+        // PUT THE SERVER IN LISTENING MODE
+        app.listen(PORT, () => console.log(`Playlister Server running on port ${PORT}`))
+    })
+    .catch((err) => {
+        console.error('Database connection failed:', err)
+        process.exit(1)
+    })

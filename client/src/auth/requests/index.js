@@ -1,120 +1,144 @@
 /*
     This is our http api for all things auth, which we use to 
-    send authorization requests to our back-end API. Note we`re 
-    using the Axios library for doing this, which is an easy to 
-    use AJAX-based library. We could (and maybe should) use Fetch, 
-    which is a native (to browsers) standard, but Axios is easier
-    to use when sending JSON back and forth and it`s a Promise-
-    based API which helps a lot with asynchronous communication.
+    send authorization requests to our back-end API. Using Fetch API
+    for making HTTP requests.
     
     @author McKilla Gorilla
 */
-// import axios from 'axios'
-// axios.defaults.withCredentials = true;
-// const api = axios.create({
-//     baseURL: baseURL,
-// })
-
-// THESE ARE ALL THE REQUESTS WE`LL BE MAKING, ALL REQUESTS HAVE A
-// REQUEST METHOD (like get) AND PATH (like /register). SOME ALSO
-// REQUIRE AN id SO THAT THE SERVER KNOWS ON WHICH LIST TO DO ITS
-// WORK, AND SOME REQUIRE DATA, WHICH WE WE WILL FORMAT HERE, FOR WHEN
-// WE NEED TO PUT THINGS INTO THE DATABASE OR IF WE HAVE SOME
-// CUSTOM FILTERS FOR QUERIES
 
 const baseURL = "http://localhost:4000/auth"
 
 export const getLoggedIn = async () => {
-    const res = await fetch(baseURL + "/loggedIn", {
-        method: "GET",
-        credentials: "include"
-    });
-    
-    if(!res.ok)
-        throw new Error("HTTP error, status: " + res.status)
-    
-    const data = await res.json();
-    
-    return {
-        status: res.status,
-        statusText: res.statusText,
-        data: data,
-        headers: res.headers
-    };
+    try {
+        const res = await fetch(baseURL + "/loggedIn", {
+            method: "GET",
+            credentials: "include"
+        });
+        
+        let data;
+        const text = await res.text();
+        try {
+            data = text ? JSON.parse(text) : {};
+        } catch (e) {
+            data = { errorMessage: text || 'Request failed' };
+        }
+        
+        return {
+            status: res.status,
+            statusText: res.statusText,
+            data: data,
+            headers: res.headers
+        };
+    } catch (error) {
+        console.error('getLoggedIn error:', error);
+        return {
+            status: 500,
+            data: { errorMessage: error.message }
+        };
+    }
 }
 
 export const loginUser = async (email, password) => {
-    const res = await fetch(baseURL + "/login/", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    });
+    try {
+        const res = await fetch(baseURL + "/login/", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
 
-    if(!res.ok)
-        throw new Error("Couldn't login, status: " + res.status);
-
-    const data = await res.json();
-    
-    return {
-        status: res.status,
-        statusText: res.statusText,
-        data: data,
-        headers: res.headers
-    };
+        // Try to parse response as JSON
+        let data;
+        const text = await res.text();
+        try {
+            data = text ? JSON.parse(text) : {};
+        } catch (e) {
+            // If not JSON, use the text as error message
+            data = { errorMessage: text || 'Login failed' };
+        }
+        
+        return {
+            status: res.status,
+            statusText: res.statusText,
+            data: data,
+            headers: res.headers
+        };
+    } catch (error) {
+        console.error('loginUser error:', error);
+        return {
+            status: 500,
+            data: { errorMessage: error.message }
+        };
+    }
 }
 
 export const logoutUser = async () => {
-    const res = await fetch(baseURL + "/logout/", {
-        method: "GET",
-        credentials: "include"
-    });
-    
-    if(!res.ok)
-        throw new Error("Could not logout user, status: " + res.status);
-    
-    const data = await res.json();
-    
-    return {
-        status: res.status,
-        statusText: res.statusText,
-        data: data,
-        headers: res.headers
-    };
+    try {
+        const res = await fetch(baseURL + "/logout/", {
+            method: "GET",
+            credentials: "include"
+        });
+        
+        const data = await res.text(); // logout might return empty response
+        
+        return {
+            status: res.status,
+            statusText: res.statusText,
+            data: data ? JSON.parse(data) : {},
+            headers: res.headers
+        };
+    } catch (error) {
+        console.error('logoutUser error:', error);
+        return {
+            status: 500,
+            data: { errorMessage: error.message }
+        };
+    }
 }
 
 export const registerUser = async (firstName, lastName, email, password, passwordVerify) => {
-    const res = await fetch(baseURL + "/register/", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-            passwordVerify: passwordVerify
-        })
-    });
+    try {
+        const res = await fetch(baseURL + "/register/", {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password,
+                passwordVerify: passwordVerify
+            })
+        });
 
-    if(!res.ok)
-        throw new Error("Could not register user, status: " + res.status);
-
-    const data = await res.json();
-    
-    return {
-        status: res.status,
-        statusText: res.statusText,
-        data: data,
-        headers: res.headers
-    };
+        let data;
+        const text = await res.text();
+        try {
+            data = text ? JSON.parse(text) : {};
+        } catch (e) {
+            data = { errorMessage: text || 'Registration failed' };
+        }
+        
+        return {
+            status: res.status,
+            statusText: res.statusText,
+            data: data,
+            headers: res.headers
+        };
+    } catch (error) {
+        console.error('registerUser error:', error);
+        return {
+            status: 500,
+            data: { errorMessage: error.message }
+        };
+    }
 }
 
 const apis = {
