@@ -59,7 +59,7 @@ class PostgreSQLManager extends DatabaseManager {
             id: {
                 type: DataTypes.UUID,
                 defaultValue: DataTypes.UUIDV4,
-                primaryKey: true,
+                primaryKey: true
             },
             firstName: {
                 type: DataTypes.STRING,
@@ -86,9 +86,8 @@ class PostgreSQLManager extends DatabaseManager {
         // Playlist Model
         this.Playlist = this.sequelize.define('Playlist', {
             id: {
-                type: DataTypes.UUID,
-                defaultValue: DataTypes.UUIDV4,
-                primaryKey: true,
+                type: DataTypes.STRING,
+                primaryKey: true
             },
             name: {
                 type: DataTypes.STRING,
@@ -119,6 +118,23 @@ class PostgreSQLManager extends DatabaseManager {
     }
 
     /**
+     * Convert Sequelize model to plain object with _id field
+     * This ensures compatibility with MongoDB-style frontend expectations
+     */
+    _toPlainObject(sequelizeInstance) {
+        if (!sequelizeInstance) return null;
+        
+        const plain = sequelizeInstance.get({ plain: true });
+        
+        // Add _id field for MongoDB compatibility
+        if (plain.id) {
+            plain._id = plain.id;
+        }
+        
+        return plain;
+    }
+
+    /**
      * Disconnect from PostgreSQL
      */
     async disconnect() {
@@ -129,29 +145,25 @@ class PostgreSQLManager extends DatabaseManager {
     // ==================== USER OPERATIONS ====================
     
     async createUser(userData) {
-        return await this.User.create(userData);
+        const user = await this.User.create(userData);
+        return this._toPlainObject(user);
     }
 
     async findUserByEmail(email) {
-        return await this.User.findOne({ where: { email: email } });
+        const user = await this.User.findOne({ where: { email: email } });
+        return this._toPlainObject(user);
     }
 
     async findUserById(id) {
-    // Handle both Mongo ObjectId and UUID formats
-    const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
-
-    if (!isUUID) {
-        console.warn(`[PostgreSQLManager] Skipping invalid UUID lookup: ${id}`);
-        return null; // Mongo-style fallback
-    }
-
-    return await this.User.findByPk(id);
+        const user = await this.User.findByPk(id);
+        return this._toPlainObject(user);
     }
 
     async updateUser(id, updateData) {
         const user = await this.User.findByPk(id);
         if (user) {
-            return await user.update(updateData);
+            const updated = await user.update(updateData);
+            return this._toPlainObject(updated);
         }
         return null;
     }
@@ -159,18 +171,13 @@ class PostgreSQLManager extends DatabaseManager {
     // ==================== PLAYLIST OPERATIONS ====================
     
     async createPlaylist(playlistData) {
-        return await this.Playlist.create(playlistData);
+        const playlist = await this.Playlist.create(playlistData);
+        return this._toPlainObject(playlist);
     }
 
     async findPlaylistById(id) {
-    const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
-
-    if (!isUUID) {
-        console.warn(`[PostgreSQLManager] Skipping invalid UUID playlist lookup: ${id}`);
-        return null;
-    }
-
-    return await this.Playlist.findByPk(id);
+        const playlist = await this.Playlist.findByPk(id);
+        return this._toPlainObject(playlist);
     }
 
     async getPlaylistPairsByOwner(ownerEmail) {
@@ -189,7 +196,8 @@ class PostgreSQLManager extends DatabaseManager {
     async updatePlaylist(id, updateData) {
         const playlist = await this.Playlist.findByPk(id);
         if (playlist) {
-            return await playlist.update(updateData);
+            const updated = await playlist.update(updateData);
+            return this._toPlainObject(updated);
         }
         return null;
     }
@@ -198,7 +206,7 @@ class PostgreSQLManager extends DatabaseManager {
         const playlist = await this.Playlist.findByPk(id);
         if (playlist) {
             await playlist.destroy();
-            return playlist;
+            return this._toPlainObject(playlist);
         }
         return null;
     }
