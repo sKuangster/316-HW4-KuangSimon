@@ -79,7 +79,7 @@ function AuthContextProvider(props) {
         try{   
             const response = await authRequestSender.registerUser(firstName, lastName, email, password, passwordVerify);   
             if (response.status === 200) {
-                console.log("Registered Sucessfully");
+                console.log("Registered Successfully");
                 authReducer({
                     type: AuthActionType.REGISTER_USER,
                     payload: {
@@ -88,18 +88,27 @@ function AuthContextProvider(props) {
                         errorMessage: null
                     }
                 })
-                history.push("/login");
-                console.log("NOW WE LOGIN");
-                auth.loginUser(email, password);
-                console.log("LOGGED IN");
+                history.push("/");
+                console.log("Registration complete, redirecting to home");
+            } else {
+                // Handle non-200 status codes
+                authReducer({
+                    type: AuthActionType.REGISTER_USER,
+                    payload: {
+                        user: null,
+                        loggedIn: false,
+                        errorMessage: response.data.errorMessage || "Registration failed"
+                    }
+                })
             }
         } catch(error){
+            console.error("Registration error:", error);
             authReducer({
                 type: AuthActionType.REGISTER_USER,
                 payload: {
-                    user: auth.user,
+                    user: null,
                     loggedIn: false,
-                    errorMessage: error.response.data.errorMessage
+                    errorMessage: error.message || "Registration failed"
                 }
             })
         }
@@ -107,8 +116,13 @@ function AuthContextProvider(props) {
 
     auth.loginUser = async function(email, password) {
         try{
+            console.log("Attempting login...");
             const response = await authRequestSender.loginUser(email, password);
+            console.log("Login response status:", response.status);
+            console.log("Login response data:", response.data);
+            
             if (response.status === 200) {
+                console.log("Login successful!");
                 authReducer({
                     type: AuthActionType.LOGIN_USER,
                     payload: {
@@ -117,15 +131,28 @@ function AuthContextProvider(props) {
                         errorMessage: null
                     }
                 })
+                console.log("Redirecting to home...");
                 history.push("/");
+            } else {
+                // Handle non-200 status codes
+                console.log("Login failed with status:", response.status);
+                authReducer({
+                    type: AuthActionType.LOGIN_USER,
+                    payload: {
+                        user: null,
+                        loggedIn: false,
+                        errorMessage: response.data.errorMessage || "Login failed"
+                    }
+                })
             }
         } catch(error){
+            console.error("Login error:", error);
             authReducer({
                 type: AuthActionType.LOGIN_USER,
                 payload: {
-                    user: auth.user,
+                    user: null,
                     loggedIn: false,
-                    errorMessage: error.response.data.errorMessage
+                    errorMessage: error.message || "Login failed"
                 }
             })
         }

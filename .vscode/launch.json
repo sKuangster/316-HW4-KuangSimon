@@ -25,12 +25,12 @@
       "internalConsoleOptions": "neverOpen"
     },
     {
-      "name": "Reset Postgre Data",
-      "type": "node",
-      "request": "launch",
-      "runtimeArgs": ["--require", "dotenv/config"],
-      "program": "${workspaceFolder}/server/test/data/postgre/index.js",
-      "skipFiles": ["<node_internals>/**"]
-    }
+            "name": "Reset Postgre Data",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/server/test/data/postgre/index.js",
+            "skipFiles": ["<node_internals>/**"],
+            "envFile": "${workspaceFolder}/server/.env"
+    },
   ]
 }
