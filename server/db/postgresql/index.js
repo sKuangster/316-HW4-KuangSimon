@@ -59,7 +59,7 @@ class PostgreSQLManager extends DatabaseManager {
             id: {
                 type: DataTypes.UUID,
                 defaultValue: DataTypes.UUIDV4,
-                primaryKey: true
+                primaryKey: true,
             },
             firstName: {
                 type: DataTypes.STRING,
@@ -86,8 +86,9 @@ class PostgreSQLManager extends DatabaseManager {
         // Playlist Model
         this.Playlist = this.sequelize.define('Playlist', {
             id: {
-                type: DataTypes.STRING,
-                primaryKey: true
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4,
+                primaryKey: true,
             },
             name: {
                 type: DataTypes.STRING,
@@ -136,7 +137,15 @@ class PostgreSQLManager extends DatabaseManager {
     }
 
     async findUserById(id) {
-        return await this.User.findByPk(id);
+    // Handle both Mongo ObjectId and UUID formats
+    const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+
+    if (!isUUID) {
+        console.warn(`[PostgreSQLManager] Skipping invalid UUID lookup: ${id}`);
+        return null; // Mongo-style fallback
+    }
+
+    return await this.User.findByPk(id);
     }
 
     async updateUser(id, updateData) {
@@ -154,7 +163,14 @@ class PostgreSQLManager extends DatabaseManager {
     }
 
     async findPlaylistById(id) {
-        return await this.Playlist.findByPk(id);
+    const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+
+    if (!isUUID) {
+        console.warn(`[PostgreSQLManager] Skipping invalid UUID playlist lookup: ${id}`);
+        return null;
+    }
+
+    return await this.Playlist.findByPk(id);
     }
 
     async getPlaylistPairsByOwner(ownerEmail) {
